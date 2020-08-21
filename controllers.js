@@ -40,9 +40,9 @@ controllers.create = (req, res, next) => {
 
 //update a todo
 controllers.update = (req, res, next) => {
-    const { search } = req.params;
+   // const { search } = req.params;
     const { title, date, details } = req.body;
-    todo.findOneAndUpdate({ title: search }, { title, date, details }, {new: true}, (err, todos) => {
+    todo.findOneAndUpdate({ title}, {date, details}, {new: true}, (err, todos) => {
         if (err) return res.status(418).json('failed to update todo item', err);
         res.locals.todos = todos;
         return next();

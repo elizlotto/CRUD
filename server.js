@@ -24,15 +24,15 @@ app.use(express.json());
 app.use(express.static('public'));
 
 //get route for finding all. 
-app.get('/all', controllers.getAll, (req, res) => {
+app.get('/todo', controllers.getAll, (req, res) => {
        console.log(res.locals.todos);
     res.status(200)
-        // .set('Content-type', 'application/json')
+        .set('Content-type', 'application/json')
         .json(res.locals.todos);
 });
 
 
-app.get('/:title', controllers.findOne, (req, res) => {
+app.get('/todo', controllers.findOne, (req, res) => {
     res.status(200)
         .set('Content-type', 'application/json')
         .json(res.locals.todos);
@@ -41,22 +41,20 @@ app.get('/:title', controllers.findOne, (req, res) => {
 //Create todo and save to database
 app.post('/todo', controllers.create, (req, res) => {
     res.status(200)
-        .set('Content-type', 'application/json')
+        // .set('Content-type', 'application/json')
         .json(res.locals.todos);
 });
 
 //create the update router 
 
 //doesnot work
-app.put('/:title', controllers.update, (req, res) => {
+app.put('/todo', controllers.update, (req, res) => {
     res.status(200)
         .set('Content-type', 'application/json')
         .json(res.locals.todos);
 });
 
-
-
-app.delete('/', controllers.delete, (req, res) => {
+app.delete('/todo', controllers.delete, (req, res) => {
     res.status(200)
         .set('Content-type', 'application/json')
         .json('Successfully deleted');
