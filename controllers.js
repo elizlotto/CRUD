@@ -40,18 +40,26 @@ controllers.create = (req, res, next) => {
 
 //update a todo
 controllers.update = (req, res, next) => {
-   // const { search } = req.params;
     const { title, date, details } = req.body;
-    todo.findOneAndUpdate({ title}, {date, details}, {new: true}, (err, todos) => {
+    if (!title) {
+        return res.status(400).json('Missing title');
+    }
+   
+    todo.findOneAndUpdate({title}, { date, details}, {new: true}, (err, todos) => {
         if (err) return res.status(418).json('failed to update todo item', err);
         res.locals.todos = todos;
         return next();
     });
+
 };
 
-//deleting a tdo
+//deleting a todo
 controllers.delete = (req, res, next) => {
-    const { title } = req.body;
+    const {title} = req.body;
+    if (!title) {
+        return res.status(400).json('Missing information');
+    }
+   
     todo.findOneAndRemove({title}, (err, todo) => {
         if (err) return res.status(418).json('failed to delete todo item', err);
         return next();

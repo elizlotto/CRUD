@@ -40,14 +40,14 @@ app.get('/todo', controllers.findOne, (req, res) => {
 
 //Create todo and save to database
 app.post('/todo', controllers.create, (req, res) => {
-    res.status(200)
-        // .set('Content-type', 'application/json')
+    res.status(201)
+        .set('Content-type', 'application/json')
         .json(res.locals.todos);
 });
 
 //create the update router 
 
-//doesnot work
+
 app.put('/todo', controllers.update, (req, res) => {
     res.status(200)
         .set('Content-type', 'application/json')
